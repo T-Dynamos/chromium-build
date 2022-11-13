@@ -1,7 +1,7 @@
 version: 2.1
 executors:
   build-chromium:
-    machine:
+    docker:
       - image: ghcr.io/termux/package-builder
 jobs:
   build-for-android:
