@@ -8,7 +8,7 @@ jobs:
     executor: build-chromium
     steps:
       - run: |
-          sudo apt install -y git && fallocate -l 8G /swapfile.swap &&  chmod 700 /swapfile.swap &&  mkswap /swapfile.swap &&  swapon /swapfile.swap && free -h
+          sudo fallocate -l 8G /swapfile.swap &&  sudo chmod 700 /swapfile.swap && sudo mkswap /swapfile.swap && sudo swapon /swapfile.swap && sudo free -h
           git clone https://github.com/termux-user-repository/tur.git --branch test-chromium-headless ~/tur
           cd ~/tur
           ./setup-environment.sh
