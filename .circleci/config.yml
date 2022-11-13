@@ -2,10 +2,7 @@ version: 2.1
 executors:
   build-chromium:
     docker:
-      - image: cimg/base:stable
-        auth:
-          username: $DOCKER_HUB_USER
-          password: $DOCKER_HUB_PASSWORD
+      - image: ghcr.io/termux/package-builder
 jobs:
   build-for-android:
     executor: build-chromium
@@ -15,7 +12,7 @@ jobs:
           git clone https://github.com/termux-user-repository/tur.git --branch test-chromium-headless ~/tur
           cd ~/tur
           ./setup-environment.sh
-          ./scripts/run-docker.sh ./build-package.sh -I -a aarch64 chromium && ls -l debs
+          ./build-package.sh -I -a aarch64 chromium && ls -l debs
       - store_artifacts:
           path: ~/tur/debs/chromium*
           destination: chromium.deb
